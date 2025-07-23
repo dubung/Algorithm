@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int checkReplaceCnt(char ** arr,int h, int w);
+int checkReplaceCnt(char** arr, int h, int w);
 int main() {
 
-   
+
     char chess[50][50];
 
     int h, w;
@@ -11,7 +11,7 @@ int main() {
     scanf("%d%d ", &h, &w);
 
     for (int H = 0; H < h; H++) {
-       scanf("%s", chess[H]);
+        scanf("%s", chess[H]);
         chess[H][w] = '\0';
     }
     int result = 640;
@@ -21,58 +21,40 @@ int main() {
 
     for (int H = 0; H <= h - 8; H++) {
         for (int W = 0; W <= w - 8; W++) {
-            
-            for (int t = 0; t <= 2; t++) {
-                iCnt = 0;
-                for (int checkH = 0; checkH < 8; checkH++) {
-                    for (int checkW = 0; checkW < 4; checkW++) {
 
-                        if (t == 0) {
-                            if (checkH % 2 == 0) {
+            iCnt = 0;
+            for (int checkH = 0; checkH < 8; checkH++) {
+                for (int checkW = 0; checkW < 4; checkW++) {
 
-                                if (chess[H + checkH][W + 2 * checkW] != chB) {
-                                    iCnt++;
-                                }if (chess[H + checkH][W + 2 * checkW + 1] != chW) {
-                                    iCnt++;
-                                }
-                            }
-                            else {
-                                if ( chess[H + checkH][W + 2 * checkW] != chW) {
-                                    iCnt++;
-                                }if (chess[H + checkH][W + 2 * checkW + 1] != chB) {
-                                    iCnt++;
-                                }
-                            }
-                        }
-                        else {
-                            if (checkH % 2 == 0) {
-                                if (chess[H + checkH][W + 2 * checkW] != chW) {
-                                    iCnt++;
-                                }if (chess[H + checkH][W + 2 * checkW + 1] != chB) {
-                                    iCnt++;
-                                }
-                            }
-                            else {
+                    
+                    if (checkH % 2 == 0) {
 
-                                if (chess[H + checkH][W + 2 * checkW] != chB) {
-                                    iCnt++;
-                                }if (chess[H + checkH][W + 2 * checkW + 1] != chW) {
-                                    iCnt++;
-                                }
-                            }
-
+                        if (chess[H + checkH][W + 2 * checkW] != chB) {
+                            iCnt++;
+                        }if (chess[H + checkH][W + 2 * checkW + 1] != chW) {
+                            iCnt++;
                         }
                     }
+                    else {
+                        if (chess[H + checkH][W + 2 * checkW] != chW) {
+                            iCnt++;
+                        }if (chess[H + checkH][W + 2 * checkW + 1] != chB) {
+                            iCnt++;
+                        }
+                    }
+                    
                 }
-                if (result > iCnt)
-                    result = iCnt;
             }
+            iCnt = iCnt > (64 - iCnt) ? 64 - iCnt : iCnt;
+            if (result > iCnt)
+                    result = iCnt;
+            
 
         }
     }
 
 
-    
-    printf("%d",result);
+
+    printf("%d", result);
     return 0;
 }
